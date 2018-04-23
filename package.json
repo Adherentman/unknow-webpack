@@ -1,0 +1,30 @@
+{
+  "name": "simpleFE",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack --config webpack.dev.js --watch",
+    "build": "webpack --config webpack.prod.js",
+    "format": "prettier --write '**/src/*.{jsx,js,scss,md}'"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^0.28.11",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^1.1.11",
+    "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.8.3",
+    "prettier": "1.12.1",
+    "sass-loader": "^7.0.1",
+    "style-loader": "^0.21.0",
+    "uglifyjs-webpack-plugin": "^1.2.5",
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.0.15",
+    "webpack-merge": "^4.1.2"
+  },
+  "dependencies": {}
+}
