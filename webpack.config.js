@@ -42,9 +42,12 @@ module.exports = {
         }),
       },
       {
-        test: /\.js$, \.jsx$/,
+        test: /(\.jsx|\.js)$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
+        options: {
+          presets: ['env', 'react'],
+        },
       },
       {
         test: /\.(png|jpg|gif)$/,
