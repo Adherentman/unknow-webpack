@@ -27,7 +27,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: /(\.scss$|\.css)/,
         use: extractSass.extract({
           use: [
             {
@@ -57,9 +57,18 @@ module.exports = {
             options: {
               name: '[path][name].[ext]',
               publicPath: 'assets/',
+              outputPath: './src/assets/images'
             },
           },
         ],
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: [{loader:'file-loader', options: {
+          limit: 1000,
+          outputPath: './src/assets/font',
+          name:'[name].[ext]?[hash]',
+        }}],
       },
     ],
   },
