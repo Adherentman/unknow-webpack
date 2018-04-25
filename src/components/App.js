@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Button from 'material-ui/Button';
+import '../styles/index.scss';
 
 class App extends Component {
   render(){
