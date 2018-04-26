@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpacPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 // 提取css文件成单独的文件
 const extractSass = new ExtractTextPlugin({
@@ -12,7 +13,14 @@ const extractSass = new ExtractTextPlugin({
 
 const HtmlPlugin = new HtmlWebpacPlugin({
   template: path.resolve(__dirname, './src/index.html'),
-  title: 'Simple FE',
+  title: 'PWA!!',
+});
+
+const WorkBox = new WorkboxPlugin.GenerateSW({
+  // these options encourage the ServiceWorkers to get in there fast
+  // and not allow any straggling "old" SWs to hang around
+  clientsClaim: true,
+  skipWaiting: true,
 });
 
 module.exports = {
@@ -57,20 +65,25 @@ module.exports = {
             options: {
               name: '[path][name].[ext]',
               publicPath: 'assets/',
-              outputPath: './src/assets/images'
+              outputPath: './src/assets/images',
             },
           },
         ],
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: [{loader:'file-loader', options: {
-          limit: 1000,
-          outputPath: './src/assets/font',
-          name:'[name].[ext]?[hash]',
-        }}],
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              limit: 1000,
+              outputPath: './src/assets/font',
+              name: '[name].[ext]?[hash]',
+            },
+          },
+        ],
       },
     ],
   },
-  plugins: [new CleanWebpackPlugin(['dist']), extractSass, HtmlPlugin],
+  plugins: [new CleanWebpackPlugin(['dist']), extractSass, HtmlPlugin, WorkBox],
 };
