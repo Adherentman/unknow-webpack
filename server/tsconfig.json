@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "jsx": "react-native",
+    "noEmit": true,
+    "moduleResolution": "node",
+    // "allowUnreachableCode": true,
+    "allowSyntheticDefaultImports": true,
+    "noUnusedParameters": true, //可以标记所有未使用的函数或方法参数为错误
+    "noUnusedLocals": true, //标记所有未使用的本地 (未导出的) 声明
+    "strict": true,
+    "outDir": "bld",
+  },
+  "exclude": ["node_modules"]
+}
