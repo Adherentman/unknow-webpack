@@ -37,6 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var Koa = require("koa");
+var port = 4040;
 var app = new Koa();
 app.use(function (ctx) { return __awaiter(_this, void 0, void 0, function () {
     return __generator(this, function (_a) {
@@ -44,4 +45,6 @@ app.use(function (ctx) { return __awaiter(_this, void 0, void 0, function () {
         return [2 /*return*/];
     });
 }); });
-app.listen(3000);
+app.listen(port, function () {
+    console.log('🌏 => server is open loaclhost:' + port);
+});

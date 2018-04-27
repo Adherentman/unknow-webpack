@@ -10,7 +10,7 @@
     "typescript": "^2.8.3"
   },
   "scripts": {
-    "start:server": "tsc && node bld/index.js"
+    "start:server": "tsc && node bld/index.js --watch"
   },
   "dependencies": {
     "@types/node": "8",
