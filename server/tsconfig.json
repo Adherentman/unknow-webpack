@@ -1,14 +1,30 @@
 {
+  "compileOnSave": true,
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs", 
-    "moduleResolution": "node",
-    "allowUnreachableCode": true,
-    "noUnusedParameters": true, //可以标记所有未使用的函数或方法参数为错误
-    "noUnusedLocals": true, //标记所有未使用的本地 (未导出的) 声明
+    "target": "es2017",
+    "module": "commonjs",
     "strict": true,
-    "outDir": "bld",
-    "lib": ["es2015"]
+    "noImplicitAny": false,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "charset": "utf8",
+    "allowJs": false,
+    "pretty": true,
+    "noEmitOnError": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "strictPropertyInitialization": false,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "inlineSourceMap": true,
+    "importHelpers": true
   },
-  "exclude": ["node_modules"]
+  "exclude": [
+    "app/public",
+    "app/views",
+    "node_modules*"
+  ]
 }
