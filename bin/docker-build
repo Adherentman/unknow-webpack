@@ -1,0 +1,3 @@
+basepath=$(cd `dirname $0`; pwd)
+docker build -t registry.cn-hangzhou.aliyuncs.com/x_zh/servers $basepath/../server
+docker run -it --name servers -p 4040:4040 -v $basepath/../server:/usr/src/app registry.cn-hangzhou.aliyuncs.com/x_zh/servers

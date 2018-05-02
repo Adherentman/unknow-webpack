@@ -6,8 +6,6 @@ COPY . /usr/src/app
 
 WORKDIR /usr/src/app
 
-RUN npm install
+CMD npm run start:server
 
-EXPOSE 7001
-
-CMD npm run dev
+EXPOSE 4040
