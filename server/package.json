@@ -4,15 +4,19 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "8",
     "@types/koa": "^2.0.45",
+    "@types/mongodb": "^3.0.18",
+    "@types/mongoose": "^5.0.12",
+    "@types/node": "8",
     "typescript": "^2.8.3"
   },
   "scripts": {
-    "start:server": "tsc && node bld/index.js --watch"
+    "start:server": "tsc && node bld/index.js"
   },
   "dependencies": {
     "@types/node": "8",
-    "koa": "^2.5.1"
+    "koa": "^2.5.1",
+    "mongodb": "^3.0.7",
+    "mongoose": "^5.0.17"
   }
 }
