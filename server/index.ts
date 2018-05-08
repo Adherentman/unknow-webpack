@@ -1,34 +1,54 @@
 import * as Koa from 'koa';
-// import * as mongoose from 'mongoose';
-import * as MongoClient from 'mongodb';
-import * as assert from 'assert';
+import * as Mongoose from 'mongoose';
+import * as koaRouter from 'koa-router';
+import * as koaBody from 'koa-bodyparser';
+import { graphiqlKoa,graphqlKoa } from 'apollo-server-koa';
+import { makeExecutableSchema } from 'graphql-tools';
+import { importSchema } from 'graphql-import';
+import resolvers from './src/resolvers';
 import env from './env';
+// import { UserModel } from './src/models/User';
 
 const app = new Koa();
+const router = new koaRouter();
 const port: number = 4040;
 
-app.use(async ctx => {
-  ctx.body = 'Hello Worldbalalallassssss';
+app.use(koaBody());
+
+app.use(router.routes()).use(router.allowedMethods());
+
+const typeDefs = importSchema('./src/schemas/main.graphql');
+
+const schema = makeExecutableSchema({
+  typeDefs,
+  resolvers
 });
 
-MongoClient.connect(env.MongoDbUrl, (err: any, client: any) => {
-  assert.equal(null, err);
-  console.log('Mongodb server is run: ' + env.MongoDbUrl);
-
-  const col = client.db('zh').collection('hi');
-  col.find().toArray( (err1: any, res: any) => {
-    assert.equal(null, err1);
-    console.log(res, '结果');
-    client.close();
+router.post(
+  '/graphql',
+  graphqlKoa({
+    schema,
   })
+);
+
+router.get(
+  '/graphiql',
+  graphiqlKoa({
+    endpointURL: '/graphql',
+  })
+);
+
+router.get('/404', async ctx => {
+  ctx.body = '404!!!';
 });
 
-// mongoose.connect('mongodb://172.20.0.1:51044/zh');
-// let db = mongoose.connection
-// db.on('error', console.error.bind(console, 'connection error:'))
-// db.once('open', () => {
-//   console.log('Mongodb server is run: ' + 'mongodb://localhost/zh')
-// });
+
+Mongoose.connect(env.MongoDbUrl);
+Mongoose.connection
+.on('error', console.error.bind(console, 'connection error:'))
+.once('open', () => {
+  console.log('Mongodb server is run: ' + env.MongoDbUrl)
+});
 
 app.listen(port, ()=>{
   console.log('🌏 => server is open loaclhost:' + port)

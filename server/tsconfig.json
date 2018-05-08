@@ -1,14 +1,17 @@
 {
-   "compilerOptions": {
+    "compilerOptions": {
     "target": "es5",
     "module": "commonjs", 
-     "moduleResolution": "node",
+    "moduleResolution": "node",
     "allowUnreachableCode": true,
-     "noUnusedParameters": true, //可以标记所有未使用的函数或方法参数为错误
-     "noUnusedLocals": true, //标记所有未使用的本地 (未导出的) 声明
-     "strict": true,
-     "outDir": "bld",
-    "lib": ["es2015"]
-   },
-   "exclude": ["node_modules"]
+    "noUnusedParameters": true, //可以标记所有未使用的函数或方法参数为错误
+    "noUnusedLocals": true, //标记所有未使用的本地 (未导出的) 声明
+    "strict": true,
+    "outDir": "bld",
+    "lib": [
+      "esnext",
+      "esnext.asynciterable"
+    ],
+  },
+  "exclude": ["node_modules"]
  }
