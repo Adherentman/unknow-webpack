@@ -3,9 +3,7 @@ import * as Mongoose from 'mongoose';
 import * as koaRouter from 'koa-router';
 import * as koaBody from 'koa-bodyparser';
 import { graphiqlKoa,graphqlKoa } from 'apollo-server-koa';
-import { makeExecutableSchema } from 'graphql-tools';
-import { importSchema } from 'graphql-import';
-import resolvers from './src/resolvers';
+import schema from './src/resolvers'
 import env from './env';
 // import { UserModel } from './src/models/User';
 
@@ -13,36 +11,16 @@ const app = new Koa();
 const router = new koaRouter();
 const port: number = 4040;
 
+// middlewares
 app.use(koaBody());
-
 app.use(router.routes()).use(router.allowedMethods());
 
-const typeDefs = importSchema('./src/schemas/main.graphql');
+// router
+router.post('/graphql', graphqlKoa({schema}));  // graphql
+router.get('/graphiql', graphiqlKoa({endpointURL: '/graphql'})); //graphiql
+router.get('/404', async ctx => ctx.body = '404!!!'); // 404
 
-const schema = makeExecutableSchema({
-  typeDefs,
-  resolvers
-});
-
-router.post(
-  '/graphql',
-  graphqlKoa({
-    schema,
-  })
-);
-
-router.get(
-  '/graphiql',
-  graphiqlKoa({
-    endpointURL: '/graphql',
-  })
-);
-
-router.get('/404', async ctx => {
-  ctx.body = '404!!!';
-});
-
-
+// Mongo
 Mongoose.connect(env.MongoDbUrl);
 Mongoose.connection
 .on('error', console.error.bind(console, 'connection error:'))
@@ -50,6 +28,6 @@ Mongoose.connection
   console.log('Mongodb server is run: ' + env.MongoDbUrl)
 });
 
-app.listen(port, ()=>{
+app.listen(port, () => {
   console.log('🌏 => server is open loaclhost:' + port)
 });
