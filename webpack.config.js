@@ -24,6 +24,7 @@ const WorkBox = new WorkboxPlugin.GenerateSW({
 });
 
 module.exports = {
+  mode: 'development',
   entry: './src/index.js',
   output: {
     filename: '[name].[hash].js',

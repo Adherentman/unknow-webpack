@@ -1,4 +1,4 @@
 basepath=$(cd `dirname $0`; pwd)
 docker rm -f servers
 docker build -t registry.cn-hangzhou.aliyuncs.com/x_zh/servers $basepath/../server
-docker start database && docker run -it --name servers --net xzh -p 4040:4040 -v $basepath/../server:/usr/src/app registry.cn-hangzhou.aliyuncs.com/x_zh/servers
+docker start database && docker run -it --name servers --net xzh -p 4040:4040 -v registry.cn-hangzhou.aliyuncs.com/x_zh/servers

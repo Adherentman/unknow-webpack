@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  mongodb:
+    image: registry.cn-hangzhou.aliyuncs.com/x_zh/mongodb
+    restart: always
+    container_name: database
+    logging:
+      driver: json-file
+      options:
+        max-size: "64m"
+        max-file: "10"
+    volumes:
+      - /data/db:/data/db
+    networks:
+      - xzh
+    ports:
+      - 49155:27017
+      
+networks:
+  xzh:
+    driver: bridge
