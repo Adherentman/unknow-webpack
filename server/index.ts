@@ -13,7 +13,7 @@ import env from './env';
 
 const app = new Koa();
 const router = new koaRouter();
-const port: number = 4040;
+const port: number = 5050;
 const staticPath: string = path.resolve(__dirname, '..', '..', 'dist');
 
 // middlewares

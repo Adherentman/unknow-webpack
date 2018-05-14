@@ -6,6 +6,6 @@ COPY . /usr/src/app
 
 WORKDIR /usr/src/app
 
-CMD npm run start:server
+CMD npm run start
 
-EXPOSE 4040
+EXPOSE 5050
