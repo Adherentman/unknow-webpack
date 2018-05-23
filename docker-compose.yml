@@ -1,16 +1,6 @@
 version: "3"
 
 services:
-  servers:
-    build: ./server
-    container_name: servers
-    networks:
-      - xzh
-    ports:
-      - 5050:5050
-    depends_on:
-      - mongodb
-      
   mongodb:
     image: registry.cn-hangzhou.aliyuncs.com/x_zh/mongodb
     container_name: database

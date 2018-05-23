@@ -4,8 +4,8 @@ RUN mkdir -p /usr/src/app
 
 COPY . /usr/src/app
 
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app/server
 
 CMD npm run start
 
-EXPOSE 5050
+EXPOSE 80
