@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
+import './index.scss'
 
 export const TextContext = React.createContext('你好');
 

@@ -1,13 +1,14 @@
 import React from 'react';
-import { Card } from 'antd';
-import { TextContext } from '../index';
+import Main from './Main';
 
-function App() {
-  return(
-    <TextContext.Consumer>
-      {text => <Card.Grid>{text}</Card.Grid>}
-    </TextContext.Consumer>
-  )
+class App extends React.Component{
+  render(){
+    return(
+      <div>
+        <Main/>
+      </div>
+    )
+  }
 }
 
 export default App;
