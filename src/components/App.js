@@ -1,11 +1,12 @@
 import React from 'react';
 import { Card } from 'antd';
+import { TextContext } from '../index';
 
 function App() {
   return(
-    <div>
-      <Card.Grid>Content</Card.Grid>
-    </div>
+    <TextContext.Consumer>
+      {text => <Card.Grid>{text}</Card.Grid>}
+    </TextContext.Consumer>
   )
 }
 
