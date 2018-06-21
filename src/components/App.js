@@ -1,33 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
+import { Card } from 'antd';
 
-const styles = {
-  root: {
-    flexGrow: 1,
-  },
-};
-
-function SimpleAppBar(props) {
-  const { classes } = props;
-  return (
-    <div className={classes.root}>
-      <AppBar position="static" color="default">
-        <Toolbar>
-          <Typography variant="title" color="inherit">
-            Titlehhhhhhhhhfafaafaf
-          </Typography>
-        </Toolbar>
-      </AppBar>
+function App() {
+  return(
+    <div>
+      <Card.Grid>Content</Card.Grid>
     </div>
-  );
+  )
 }
 
-SimpleAppBar.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(SimpleAppBar);
+export default App;

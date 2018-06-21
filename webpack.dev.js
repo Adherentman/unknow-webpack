@@ -5,6 +5,7 @@ const config = require('./webpack.config');
 module.exports = merge(config, {
   devServer:{
     contentBase: path.join(__dirname, "./dist"),
+    open: true,
     compress: true,
     port: 8999
   },
