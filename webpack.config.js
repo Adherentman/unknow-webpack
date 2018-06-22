@@ -51,6 +51,15 @@ module.exports = {
         },
       },
       {
+        test: /(\.jsx|\.js)$/,
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        include: [path.join(__dirname, 'src')],
+        options: {
+          fix: true
+    	  }
+      },
+      {
         test: /\.(png|jpg|gif)$/,
         use: [
           {
