@@ -1,5 +1,6 @@
-import React, { Component } from "react";
-import { Layout, Menu, Icon } from "antd";
+import React, { Component } from 'react';
+import { Layout, Menu, Icon } from 'antd';
+import Login from './components/Auth/Login';
 const { Header, Content, Footer, Sider } = Layout;
 
 class BackStage extends Component {
@@ -15,12 +16,12 @@ class BackStage extends Component {
 				>
 					<div
 						style={{
-							height: "32px",
-							background: "rgba(255, 255, 255, 0.2)",
-							margin: "16px"
+							height: '32px',
+							background: 'rgba(255, 255, 255, 0.2)',
+							margin: '16px'
 						}}
 					/>
-					<Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
+					<Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
 						<Menu.Item key="1">
 							<Icon type="user" />
 							<span className="nav-text">nav 1</span>
@@ -40,12 +41,12 @@ class BackStage extends Component {
 					</Menu>
 				</Sider>
 				<Layout>
-					<Content style={{ margin: "24px 16px 0" }}>
-						<div style={{ padding: 24, background: "#fff", minHeight: 360 }}>
-							三生三世
+					<Content style={{ margin: '24px 16px 0' }}>
+						<div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+							<Login />
 						</div>
 					</Content>
-					<Footer style={{ textAlign: "center" }}>
+					<Footer style={{ textAlign: 'center' }}>
 						Ant Design ©2016 Created by Ant UED
 					</Footer>
 				</Layout>
