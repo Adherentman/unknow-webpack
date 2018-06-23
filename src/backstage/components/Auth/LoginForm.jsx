@@ -1,12 +1,13 @@
 import React from 'react';
 import { Card } from 'antd';
 import Login from './Login';
-import styles from './LoginForm.scss';
+import './LoginForm.scss';
 
 function LoginForm() {
 	return (
 		<div className="loginForm">
-			<Card title="LoginForm">
+			<Card>
+				<h2>登录</h2>
 				<Login />
 			</Card>
 		</div>

@@ -41,7 +41,7 @@ class _Login extends React.Component {
 					<Button type="primary" htmlType="submit" style={{ width: '100%' }}>
 						Log in
 					</Button>
-					Or <a href="">register now!</a>
+					<Button style={{ width: '100%' }}>register now!</Button>
 				</FormItem>
 			</Form>
 		);
