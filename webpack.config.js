@@ -17,7 +17,7 @@ const HtmlPlugin = new HtmlWebpacPlugin({
 
 module.exports = {
 	mode: 'development',
-	entry: './src/index.js',
+	entry: './src/index.jsx',
 	output: {
 		filename: '[name].[hash].js',
 		path: path.resolve(__dirname, 'dist')

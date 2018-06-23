@@ -4,19 +4,14 @@ import { Form, Icon, Input, Button, Checkbox } from 'antd';
 const FormItem = Form.Item;
 
 class _Login extends React.Component {
-	constructor(props) {
-		super(props);
-
-		this.handleSubmit = this.handleSubmit.bind(this);
-	}
-	handleSubmit(e) {
+	handleSubmit = e => {
 		e.preventDefault();
 		this.props.form.validateFields((err, values) => {
 			if (!err) {
 				console.log('Received values of form: ', values);
 			}
 		});
-	}
+	};
 	render() {
 		const { getFieldDecorator } = this.props.form;
 		return (
@@ -43,11 +38,7 @@ class _Login extends React.Component {
 					)}
 				</FormItem>
 				<FormItem>
-					<Button
-						type="primary"
-						htmlType="submit"
-						className="login-form-button"
-					>
+					<Button type="primary" htmlType="submit" style={{ width: '100%' }}>
 						Log in
 					</Button>
 					Or <a href="">register now!</a>
