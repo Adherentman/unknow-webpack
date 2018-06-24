@@ -1,20 +1,36 @@
 import React from 'react';
+import gql from 'graphql-tag';
+import { Mutation } from 'react-apollo';
 import { Form, Input, Button } from 'antd';
+
 const FormItem = Form.Item;
 
+const REGISTER_Ql = gql`
+	mutation RegisterUser(
+		$username: String
+		$password: String
+		$confirm: String
+		$email: String
+	) {
+		RegisterUser(
+			username: $username
+			password: $password
+			confirm: $confirm
+			email: $email
+		) {
+			username
+			password
+			confirm
+			email
+		}
+	}
+`;
 class _Register extends React.Component {
 	state = {
 		confirmDirty: false,
 		autoCompleteResult: []
 	};
-	handleSubmit = e => {
-		e.preventDefault();
-		this.props.form.validateFieldsAndScroll((err, values) => {
-			if (!err) {
-				console.log('Received values of form: ', values);
-			}
-		});
-	};
+	// handleSubmit = ;
 	handleConfirmBlur = e => {
 		const value = e.target.value;
 		this.setState({ confirmDirty: this.state.confirmDirty || !!value });
@@ -72,58 +88,81 @@ class _Register extends React.Component {
 		};
 
 		return (
-			<Form onSubmit={this.handleSubmit}>
-				<FormItem {...formItemLayout} label="用户名">
-					{getFieldDecorator('userName', {
-						rules: [{ required: true, message: 'Please input your username!' }]
-					})(<Input />)}
-				</FormItem>
-				<FormItem {...formItemLayout} label="密码">
-					{getFieldDecorator('password', {
-						rules: [
-							{
-								required: true,
-								message: 'Please input your password!'
-							},
-							{
-								validator: this.validateToNextPassword
-							}
-						]
-					})(<Input type="password" />)}
-				</FormItem>
-				<FormItem {...formItemLayout} label="再次输入密码">
-					{getFieldDecorator('confirm', {
-						rules: [
-							{
-								required: true,
-								message: 'Please confirm your password!'
-							},
-							{
-								validator: this.compareToFirstPassword
-							}
-						]
-					})(<Input type="password" onBlur={this.handleConfirmBlur} />)}
-				</FormItem>
-				<FormItem {...formItemLayout} label="邮箱">
-					{getFieldDecorator('email', {
-						rules: [
-							{
-								type: 'email',
-								message: 'The input is not valid E-mail!'
-							},
-							{
-								required: true,
-								message: 'Please input your E-mail!'
-							}
-						]
-					})(<Input />)}
-				</FormItem>
-				<FormItem {...tailFormItemLayout}>
-					<Button type="primary" htmlType="submit">
-						Register
-					</Button>
-				</FormItem>
-			</Form>
+			<Mutation mutation={REGISTER_Ql}>
+				{(RegisterUser, { data }) => (
+					<Form
+						onSubmit={e => {
+							e.preventDefault();
+							this.props.form.validateFieldsAndScroll((err, values) => {
+								if (!err) {
+									console.log('Received values of form: ', values);
+									RegisterUser({
+										variables: {
+											username: values.username,
+											password: values.password,
+											confirm: values.confirm,
+											email: values.email
+										}
+									});
+								}
+							});
+						}}
+					>
+						<FormItem {...formItemLayout} label="用户名">
+							{getFieldDecorator('userName', {
+								rules: [
+									{ required: true, message: 'Please input your username!' }
+								]
+							})(<Input />)}
+						</FormItem>
+						<FormItem {...formItemLayout} label="密码">
+							{getFieldDecorator('password', {
+								rules: [
+									{
+										required: true,
+										message: 'Please input your password!'
+									},
+									{
+										validator: this.validateToNextPassword
+									}
+								]
+							})(<Input type="password" />)}
+						</FormItem>
+						<FormItem {...formItemLayout} label="再次输入密码">
+							{getFieldDecorator('confirm', {
+								rules: [
+									{
+										required: true,
+										message: 'Please confirm your password!'
+									},
+									{
+										validator: this.compareToFirstPassword
+									}
+								]
+							})(<Input type="password" onBlur={this.handleConfirmBlur} />)}
+						</FormItem>
+						<FormItem {...formItemLayout} label="邮箱">
+							{getFieldDecorator('email', {
+								rules: [
+									{
+										type: 'email',
+										message: 'The input is not valid E-mail!'
+									},
+									{
+										required: true,
+										message: 'Please input your E-mail!'
+									}
+								]
+							})(<Input />)}
+						</FormItem>
+						<FormItem {...tailFormItemLayout}>
+							<Button type="primary" htmlType="submit">
+								Register
+							</Button>
+						</FormItem>
+					</Form>
+				)}
+			</Mutation>
 		);
 	}
 }
