@@ -1,34 +1,12 @@
 import React from 'react';
-import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 import { Form, Input, Button } from 'antd';
-
+import { REGISTER_Ql } from '../../../Api/Auth';
 const FormItem = Form.Item;
 
-const REGISTER_Ql = gql`
-	mutation RegisterUser(
-		$username: String
-		$password: String
-		$confirm: String
-		$email: String
-	) {
-		RegisterUser(
-			username: $username
-			password: $password
-			confirm: $confirm
-			email: $email
-		) {
-			username
-			password
-			confirm
-			email
-		}
-	}
-`;
 class _Register extends React.Component {
 	state = {
-		confirmDirty: false,
-		autoCompleteResult: []
+		confirmDirty: false
 	};
 	// handleSubmit = ;
 	handleConfirmBlur = e => {
@@ -49,17 +27,6 @@ class _Register extends React.Component {
 			form.validateFields(['confirm'], { force: true });
 		}
 		callback();
-	};
-	handleWebsiteChange = value => {
-		let autoCompleteResult;
-		if (!value) {
-			autoCompleteResult = [];
-		} else {
-			autoCompleteResult = ['.com', '.org', '.net'].map(
-				domain => `${value}${domain}`
-			);
-		}
-		this.setState({ autoCompleteResult });
 	};
 	render() {
 		const { getFieldDecorator } = this.props.form;
@@ -98,7 +65,7 @@ class _Register extends React.Component {
 									console.log('Received values of form: ', values);
 									RegisterUser({
 										variables: {
-											username: values.username,
+											username: values.userName,
 											password: values.password,
 											confirm: values.confirm,
 											email: values.email
@@ -110,9 +77,7 @@ class _Register extends React.Component {
 					>
 						<FormItem {...formItemLayout} label="用户名">
 							{getFieldDecorator('userName', {
-								rules: [
-									{ required: true, message: 'Please input your username!' }
-								]
+								rules: [{ required: true, message: '请输入用户名!' }]
 							})(<Input />)}
 						</FormItem>
 						<FormItem {...formItemLayout} label="密码">
@@ -120,7 +85,7 @@ class _Register extends React.Component {
 								rules: [
 									{
 										required: true,
-										message: 'Please input your password!'
+										message: '请输入密码!'
 									},
 									{
 										validator: this.validateToNextPassword
@@ -133,7 +98,7 @@ class _Register extends React.Component {
 								rules: [
 									{
 										required: true,
-										message: 'Please confirm your password!'
+										message: '请再次输入密码!'
 									},
 									{
 										validator: this.compareToFirstPassword
@@ -146,18 +111,18 @@ class _Register extends React.Component {
 								rules: [
 									{
 										type: 'email',
-										message: 'The input is not valid E-mail!'
+										message: '请符合E-mail格式!'
 									},
 									{
 										required: true,
-										message: 'Please input your E-mail!'
+										message: '请输入E-mail!'
 									}
 								]
 							})(<Input />)}
 						</FormItem>
 						<FormItem {...tailFormItemLayout}>
 							<Button type="primary" htmlType="submit">
-								Register
+								注册哦！
 							</Button>
 						</FormItem>
 					</Form>
