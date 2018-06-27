@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Layout, Menu, Icon } from 'antd';
+import { BrowserRouter as Link } from 'react-router-dom';
 import Login from './components/Auth/Login';
+import MenuRouter from '../components/MenuRouter';
 const { Header, Content, Footer, Sider } = Layout;
 
 class BackStage extends Component {
@@ -21,29 +23,12 @@ class BackStage extends Component {
 							margin: '16px'
 						}}
 					/>
-					<Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-						<Menu.Item key="1">
-							<Icon type="user" />
-							<span className="nav-text">nav 1</span>
-						</Menu.Item>
-						<Menu.Item key="2">
-							<Icon type="video-camera" />
-							<span className="nav-text">nav 2</span>
-						</Menu.Item>
-						<Menu.Item key="3">
-							<Icon type="upload" />
-							<span className="nav-text">nav 3</span>
-						</Menu.Item>
-						<Menu.Item key="4">
-							<Icon type="user" />
-							<span className="nav-text">nav 4</span>
-						</Menu.Item>
-					</Menu>
+					<MenuRouter />
 				</Sider>
 				<Layout>
 					<Content style={{ margin: '24px 16px 0' }}>
 						<div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-							<Login />
+							{this.props.children}
 						</div>
 					</Content>
 					<Footer style={{ textAlign: 'center' }}>

@@ -1,12 +1,24 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import BackStage from '../backstage/BackStage';
+import DashBoard from '../backstage/views/dashboard/DashBoard';
+import Photos from '../backstage/views/photos/Photos';
+import Posts from '../backstage/views/posts/Posts';
 import Main from './Main';
 
 class App extends React.Component {
 	render() {
 		return (
-			<div>
-				<Main />
-			</div>
+			<Router>
+				<div>
+					<Switch>
+						<Route path="/dashboard" component={DashBoard} />
+						<Route path="/posts" component={Photos} />
+						<Route path="/photo" component={Posts} />
+						<Route path="/" component={BackStage} />
+					</Switch>
+				</div>
+			</Router>
 		);
 	}
 }
