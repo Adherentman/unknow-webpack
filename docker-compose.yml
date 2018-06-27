@@ -1,6 +1,14 @@
 version: "3"
 
 services:
+  servers:
+    build: ./
+    container_name: servers
+    ports:
+      - 80:80
+    networks: 
+      - xzh
+
   mongodb:
     image: registry.cn-hangzhou.aliyuncs.com/x_zh/mongodb
     container_name: database
