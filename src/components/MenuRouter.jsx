@@ -20,7 +20,7 @@ const MenuRouter = withRouter(({ location }) => (
 		>
 			<MenuItem key="1">
 				<Link to="/dashboard">控制台</Link>
-			</MenuItem>
+			</MenuItem>w
 			<MenuItem key="2">
 				<Link to="/posts">文章</Link>
 			</MenuItem>
