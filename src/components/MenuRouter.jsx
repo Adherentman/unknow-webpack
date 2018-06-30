@@ -10,40 +10,27 @@ const MenuState = [
 	{ nav: 'photo', icon: '3', name: '照片' }
 ];
 
-const MenuRouter = withRouter(({ location }) => (
-	<div>
-		<Menu
-			theme="dark"
-			mode="inline"
-			defaultSelectedKeys={['1']}
-			selectedKeys={[location.pathname]}
-		>
-			<MenuItem key="1">
-				<Link to="/dashboard">控制台</Link>
-			</MenuItem>w
-			<MenuItem key="2">
-				<Link to="/posts">文章</Link>
-			</MenuItem>
-			<MenuItem key="3">
-				<Link to="/photo">照片</Link>
-			</MenuItem>
-		</Menu>
+class MenuRouter extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+	render() {
+		return (
+			<div>
+				<Menu theme="dark" mode="inline" selectedKeys={[location.pathname]}>
+					<MenuItem key="/dashboard">
+						<Link to="/dashboard">控制台</Link>
+					</MenuItem>
+					<MenuItem key="/posts">
+						<Link to="/posts">文章</Link>
+					</MenuItem>
+					<MenuItem key="/photo">
+						<Link to="/photo">照片</Link>
+					</MenuItem>
+				</Menu>
+			</div>
+		);
+	}
+}
 
-		{
-			//MenuState.map((x, index) => (
-			// 	<Menu
-			// 		theme="dark"
-			// 		mode="inline"
-			// 		defaultSelectedKeys={[`${x.key}`]}
-			// 		key={x.key}
-			// 	>
-			// 		<MenuItem key={x.key}>
-			// 			<Link to={'/' + x.nav}>{x.name}</Link>
-			// 		</MenuItem>
-			// 	</Menu>
-			// ))
-		}
-	</div>
-));
-
-export default MenuRouter;
+export default withRouter(MenuRouter);
