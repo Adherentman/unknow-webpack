@@ -5,7 +5,7 @@ class DashBoard extends React.Component {
 	render() {
 		return (
 			<div>
-				<BackStage>dashboard!!!</BackStage>
+				<BackStage>lalalla!!!</BackStage>
 			</div>
 		);
 	}

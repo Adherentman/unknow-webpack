@@ -19,6 +19,7 @@ module.exports = {
 	mode: 'development',
 	entry: './src/index.jsx',
 	output: {
+		publicPath: '/',
 		filename: '[name].[hash].js',
 		path: path.resolve(__dirname, 'dist')
 	},

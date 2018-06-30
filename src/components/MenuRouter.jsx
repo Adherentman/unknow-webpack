@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { Menu, Icon } from 'antd';
+import { Menu } from 'antd';
 
 const MenuItem = Menu.Item;
 
@@ -10,13 +10,10 @@ const MenuState = [
 	{ nav: 'photo', icon: '3', name: '照片' }
 ];
 
-class MenuRouter extends React.Component {
-	constructor(props) {
-		super(props);
-	}
+class MenuRouter extends Component {
 	render() {
 		return (
-			<div>
+			<React.Fragment>
 				<Menu theme="dark" mode="inline" selectedKeys={[location.pathname]}>
 					<MenuItem key="/dashboard">
 						<Link to="/dashboard">控制台</Link>
@@ -28,7 +25,7 @@ class MenuRouter extends React.Component {
 						<Link to="/photo">照片</Link>
 					</MenuItem>
 				</Menu>
-			</div>
+			</React.Fragment>
 		);
 	}
 }

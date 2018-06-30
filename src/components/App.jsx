@@ -4,7 +4,6 @@ import BackStage from '../backstage/BackStage';
 import DashBoard from '../backstage/views/dashboard/DashBoard';
 import Photos from '../backstage/views/photos/Photos';
 import Posts from '../backstage/views/posts/Posts';
-import Main from './Main';
 
 class App extends React.Component {
 	render() {
@@ -13,6 +12,7 @@ class App extends React.Component {
 				<div>
 					<Switch>
 						<Route path="/dashboard" component={DashBoard} />
+						<Route path="/dashboard/:id" component={DashBoard} />
 						<Route path="/posts" component={Photos} />
 						<Route path="/photo" component={Posts} />
 						<Route path="/" component={BackStage} />
