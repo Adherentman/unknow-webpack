@@ -7,7 +7,7 @@ module.exports = merge(config, {
 		contentBase: path.join(__dirname, './dist'),
 		open: true,
 		overlay: true,
-		stats: 'errors-only',
+		// stats: 'errors-only',
 		compress: true,
 		historyApiFallback: true,
 		port: 8999
