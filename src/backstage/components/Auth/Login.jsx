@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { withRouter } from 'react-router-dom';
+import { Form, Icon, Input, Button } from 'antd';
 
 const FormItem = Form.Item;
 
-class _Login extends React.Component {
+class _Login extends Component {
 	handleSubmit = e => {
 		e.preventDefault();
 		this.props.form.validateFields((err, values) => {
@@ -13,6 +14,7 @@ class _Login extends React.Component {
 		});
 	};
 	render() {
+		const { history } = this.props;
 		const { getFieldDecorator } = this.props.form;
 		return (
 			<Form onSubmit={this.handleSubmit} className="login-form">
@@ -41,7 +43,19 @@ class _Login extends React.Component {
 					<Button type="primary" htmlType="submit" style={{ width: '100%' }}>
 						Log in
 					</Button>
-					<Button style={{ width: '100%' }}>register now!</Button>
+					<Button
+						style={{ width: '100%' }}
+						onClick={() => history.push('/register')}
+					>
+						register now!
+					</Button>
+					<Button
+						type="primary"
+						style={{ width: '100%' }}
+						onClick={() => history.push('/dashboard')}
+					>
+						Log in
+					</Button>
 				</FormItem>
 			</Form>
 		);
@@ -50,4 +64,4 @@ class _Login extends React.Component {
 
 const Login = Form.create()(_Login);
 
-export default Login;
+export default withRouter(Login);
