@@ -8,6 +8,7 @@ module.exports = merge(config, {
 		open: true,
 		overlay: true,
 		// stats: 'errors-only',
+		publicPath: '/',
 		compress: true,
 		historyApiFallback: true,
 		port: 8999

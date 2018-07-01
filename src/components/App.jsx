@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { LoadLoginForm, LoadRegisterForm, LoadDashBoard } from '../routes/back';
 import LoginForm from '../backstage/components/Auth/LoginForm';
 import Photos from '../backstage/views/photos/Photos';

@@ -3,7 +3,9 @@ import * as Mongoose from 'mongoose';
 import * as koaRouter from 'koa-router';
 import * as koaBody from 'koa-bodyparser';
 import * as koaStatic from 'koa-static';
+import * as koaSend from 'koa-send';
 import * as path from 'path';
+import * as fs from 'fs';
 import { graphiqlKoa, graphqlKoa } from 'apollo-server-koa';
 import { ApolloEngine } from 'apollo-engine';
 import { makeExecutableSchema } from 'graphql-tools';
@@ -20,6 +22,21 @@ const staticPath: string = path.resolve(__dirname, '..', '..', 'dist');
 app.use(koaBody());
 app.use(router.routes()).use(router.allowedMethods());
 app.use(koaStatic(staticPath, { extensions: ['html']}));
+app.use(async (ctx, next) => {
+  if (!/\./.test(ctx.request.url)) {
+      await koaSend(
+          ctx,
+          'index.html',
+          {
+              root: path.join(__dirname, '../../dist'),
+              maxage: 1000 * 60 * 60 * 24 * 7,
+              gzip: true,
+          } // eslint-disable-line
+      );
+  } else {
+      await next();
+  }
+});
 
 const typeDefs = importSchema('./src/schemas/main.graphql');
 const schema = makeExecutableSchema({
@@ -28,6 +45,11 @@ const schema = makeExecutableSchema({
 });
 
 // router
+// router.get('*', async function(ctx, next) {
+//   var html = fs.readFileSync(path.resolve(__dirname, '..', '..', 'dist', 'index.html'));
+//   ctx.type = 'html';
+//   ctx.body = html;
+// })
 router.post('/graphql', graphqlKoa({ schema, tracing: true, cacheControl: true })); // graphql
 router.get('/graphiql', graphiqlKoa({ endpointURL: '/graphql' })); //graphiql
 router.get('/404', async (ctx: Koa.Context) => (ctx.body = '404!!!')); // 404
