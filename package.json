@@ -8,7 +8,9 @@
     "start": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "format": "prettier --write '**/src/*.{jsx,js,scss,md}'",
-    "start-pwa": "http-server dist"
+    "start-pwa": "http-server dist",
+    "start-analysis": "webpack -p --progress",
+    "build-analysis": "webpack --config webpack.prod.js --report"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -35,6 +37,7 @@
     "style-loader": "^0.21.0",
     "uglifyjs-webpack-plugin": "^1.2.6",
     "webpack": "^4.12.0",
+    "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.1.3",
     "webpack-merge": "^4.1.3"

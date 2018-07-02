@@ -17,7 +17,7 @@ class App extends React.Component {
 						<Route path="/posts" component={Photos} />
 						<Route path="/photo" component={Posts} />
 						<Route exact={true} path="/register" component={LoadRegisterForm} />
-						<Route exact={true} path="/" component={LoginForm} />
+						<Route exact={true} path="/" component={LoadLoginForm} />
 					</Switch>
 				</div>
 			</Router>

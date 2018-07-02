@@ -45,11 +45,6 @@ const schema = makeExecutableSchema({
 });
 
 // router
-// router.get('*', async function(ctx, next) {
-//   var html = fs.readFileSync(path.resolve(__dirname, '..', '..', 'dist', 'index.html'));
-//   ctx.type = 'html';
-//   ctx.body = html;
-// })
 router.post('/graphql', graphqlKoa({ schema, tracing: true, cacheControl: true })); // graphql
 router.get('/graphiql', graphiqlKoa({ endpointURL: '/graphql' })); //graphiql
 router.get('/404', async (ctx: Koa.Context) => (ctx.body = '404!!!')); // 404
