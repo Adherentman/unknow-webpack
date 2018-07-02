@@ -3,6 +3,12 @@
   "plugins": [
     ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }],
     ["transform-class-properties", { "spec": true }],
-    ["syntax-dynamic-import"]
+    ["syntax-dynamic-import"],
+    ["transform-runtime", {
+      "helpers": false,
+      "polyfill": false,
+      "regenerator": true,
+      "moduleName": "babel-runtime"
+    }]
   ]
 }
