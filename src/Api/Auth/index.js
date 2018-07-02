@@ -24,7 +24,9 @@ export const REGISTER_Ql = gql`
 export const LOGIN_QL = gql`
 	query Login($username: String, $password: String) {
 		Login(username: $username, password: $password) {
-			message
+			username
+			password
+			token
 		}
 	}
 `;

@@ -1,23 +1,26 @@
 import React, { Component } from 'react';
 import { ApolloConsumer } from 'react-apollo';
 import { withRouter } from 'react-router-dom';
-import { Form, Icon, Input, Button } from 'antd';
+import { Form, Icon, Input, Button, Alert } from 'antd';
 import { LOGIN_QL } from '../../../Api/Auth';
 import { LoadDashBoard } from '../../../routes/back';
 
 const FormItem = Form.Item;
 
 class _Login extends Component {
+	state = {
+		Someerror: ''
+	};
 	render() {
 		const { history } = this.props;
-		const { getFieldDecorator } = this.props.form;
+		const { getFieldDecorator, validateFields } = this.props.form;
 		return (
 			<ApolloConsumer>
 				{client => (
 					<Form
 						onSubmit={e => {
 							e.preventDefault();
-							this.props.form.validateFields(async (err, values) => {
+							validateFields(async (err, values) => {
 								if (!err) {
 									console.log('Received values of form: ', values);
 									const { data } = await client.query({
@@ -27,6 +30,11 @@ class _Login extends Component {
 											password: values.password
 										}
 									});
+									if (data) {
+										localStorage.setItem('token', data.Login.token || '');
+										console.log(localStorage.getItem('token'));
+										history.push('/dashboard');
+									}
 									console.log(data, '啦啦啦啦我是data!');
 								}
 							});

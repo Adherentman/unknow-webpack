@@ -3,8 +3,8 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpacPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-	.BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+// 	.BundleAnalyzerPlugin;
 
 // 提取css文件成单独的文件
 const extractSass = new ExtractTextPlugin({
@@ -96,7 +96,7 @@ module.exports = {
 	plugins: [
 		new CleanWebpackPlugin(['dist']),
 		extractSass,
-		HtmlPlugin,
-		new BundleAnalyzerPlugin()
+		HtmlPlugin
+		// new BundleAnalyzerPlugin()
 	]
 };
