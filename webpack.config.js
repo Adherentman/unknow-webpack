@@ -96,7 +96,8 @@ module.exports = {
 	plugins: [
 		new CleanWebpackPlugin(['dist']),
 		extractSass,
-		HtmlPlugin
+		HtmlPlugin,
+		new webpack.HotModuleReplacementPlugin()
 		// new BundleAnalyzerPlugin()
 	]
 };

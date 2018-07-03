@@ -5,6 +5,7 @@ const config = require('./webpack.config');
 module.exports = merge(config, {
 	devServer: {
 		contentBase: path.join(__dirname, './dist'),
+		hot: true,
 		open: true,
 		overlay: true,
 		// stats: 'errors-only',

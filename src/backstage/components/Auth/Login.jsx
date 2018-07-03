@@ -3,14 +3,10 @@ import { ApolloConsumer } from 'react-apollo';
 import { withRouter } from 'react-router-dom';
 import { Form, Icon, Input, Button, Alert } from 'antd';
 import { LOGIN_QL } from '../../../Api/Auth';
-import { LoadDashBoard } from '../../../routes/back';
 
 const FormItem = Form.Item;
 
 class _Login extends Component {
-	state = {
-		Someerror: ''
-	};
 	render() {
 		const { history } = this.props;
 		const { getFieldDecorator, validateFields } = this.props.form;
@@ -26,7 +22,7 @@ class _Login extends Component {
 									const { data } = await client.query({
 										query: LOGIN_QL,
 										variables: {
-											username: values.userName,
+											username: values.username,
 											password: values.password
 										}
 									});
@@ -42,7 +38,7 @@ class _Login extends Component {
 						className="login-form"
 					>
 						<FormItem>
-							{getFieldDecorator('userName', {
+							{getFieldDecorator('username', {
 								rules: [
 									{ required: true, message: 'Please input your username!' }
 								]

@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import BackStage from '../../BackStage';
+import MyEditor from '../../../components/markdown';
 
 class DashBoard extends React.Component {
 	render() {
 		return (
-			<div>
-				<BackStage>lalalla!!!</BackStage>
-			</div>
+			<Fragment>
+				<BackStage>
+					<MyEditor />
+				</BackStage>
+			</Fragment>
 		);
 	}
 }
