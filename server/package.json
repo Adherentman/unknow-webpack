@@ -16,10 +16,12 @@
     "@types/mongoose": "^5.0.12",
     "@types/node": "8",
     "@types/sha1": "^1.1.1",
+    "nodemon": "^1.17.5",
     "typescript": "^2.8.3"
   },
   "scripts": {
-    "start": "tsc && node bld/index.js"
+    "start": "tsc && node bld/index.js",
+    "nodeman": "nodemon"
   },
   "dependencies": {
     "apollo-engine": "^1.1.1",

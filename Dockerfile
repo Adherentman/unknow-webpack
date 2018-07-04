@@ -4,8 +4,8 @@ RUN mkdir -p /usr/src/app
 
 COPY . /usr/src/app
 
-WORKDIR /usr/src/app/server
+WORKDIR /usr/src/app/server/bld
 
-CMD npm run start
+CMD npm run nodeman
 
 EXPOSE 80

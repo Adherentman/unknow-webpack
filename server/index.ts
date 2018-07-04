@@ -43,12 +43,10 @@ const schema = makeExecutableSchema({
   typeDefs,
   resolvers,
 });
-
 // router
 router.post('/graphql', graphqlKoa({ schema, tracing: true, cacheControl: true })); // graphql
 router.get('/graphiql', graphiqlKoa({ endpointURL: '/graphql' })); //graphiql
 router.get('/404', async (ctx: Koa.Context) => (ctx.body = '404!!!')); // 404
-
 // Mongodb
 Mongoose.connect(env.MongoDbUrl);
 Mongoose.connection
@@ -60,7 +58,6 @@ Mongoose.connection
 const engine = new ApolloEngine({
   apiKey: env.EngineApiKey,
 });
-
 // app listen
 engine.listen(
   {
