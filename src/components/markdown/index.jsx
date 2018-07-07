@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Editor, EditorState, RichUtils } from 'draft-js';
+import { Editor, EditorState, RichUtils, Modifier } from 'draft-js';
 
 class MyEditor extends Component {
 	constructor(props) {
@@ -7,6 +7,21 @@ class MyEditor extends Component {
 		this.state = { editorState: EditorState.createEmpty() };
 		this.onChange = editorState => this.setState({ editorState });
 		// this.handleKeyCommand = this.handleKeyCommand.bind(this);
+
+		// const contentState = this.state.editorState.getCurrentContent();
+		// const contentStateWithEntity = contentState.createEntity(
+		// 	'LINK',
+		// 	'MUTABLE',
+		// 	{ url: 'https://www.baidu.com' }
+		// );
+
+		// const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+
+		// const contentStateWithLink = Modifier.applyEntity(
+		// 	contentStateWithEntity,
+		// 	selectionState,
+		// 	entityKey
+		// );
 	}
 
 	handleKeyCommand = (command, editorState) => {
@@ -22,7 +37,6 @@ class MyEditor extends Component {
 	onClickBold = () => {
 		this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD'));
 	};
-
 	render() {
 		return (
 			<React.Fragment>

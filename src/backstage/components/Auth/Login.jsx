@@ -7,6 +7,9 @@ import { LOGIN_QL } from '../../../Api/Auth';
 const FormItem = Form.Item;
 
 class _Login extends Component {
+	state = {
+		noLogin: true
+	};
 	render() {
 		const { history } = this.props;
 		const { getFieldDecorator, validateFields } = this.props.form;
@@ -19,24 +22,29 @@ class _Login extends Component {
 							validateFields(async (err, values) => {
 								if (!err) {
 									console.log('Received values of form: ', values);
-									const { data } = await client.query({
+									const { data, error } = await client.query({
 										query: LOGIN_QL,
 										variables: {
 											username: values.username,
 											password: values.password
 										}
 									});
+									if (error) {
+										this.setState({ noLogin: false });
+										console.log(this.state.noLogin);
+									}
 									if (data) {
 										localStorage.setItem('token', data.Login.token || '');
 										console.log(localStorage.getItem('token'));
 										history.push('/dashboard');
 									}
-									console.log(data, '啦啦啦啦我是data!');
+									console.log(data);
 								}
 							});
 						}}
 						className="login-form"
 					>
+						{this.state.noLogin ? <div>password error</div> : null}
 						<FormItem>
 							{getFieldDecorator('username', {
 								rules: [
@@ -85,7 +93,7 @@ class _Login extends Component {
 								style={{ width: '100%' }}
 								onClick={() => history.push('/dashboard')}
 							>
-								Log in
+								跳转
 							</Button>
 						</FormItem>
 					</Form>
