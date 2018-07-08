@@ -12,7 +12,9 @@ class _Login extends Component {
 	};
 	render() {
 		const { history } = this.props;
+
 		const { getFieldDecorator, validateFields } = this.props.form;
+
 		return (
 			<ApolloConsumer>
 				{client => (

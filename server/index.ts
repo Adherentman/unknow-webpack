@@ -5,10 +5,10 @@ import * as koaBody from 'koa-bodyparser';
 import * as koaStatic from 'koa-static';
 import * as koaSend from 'koa-send';
 import * as path from 'path';
-import * as fs from 'fs';
+import { graphql } from 'graphql';
 import { graphiqlKoa, graphqlKoa } from 'apollo-server-koa';
 import { ApolloEngine } from 'apollo-engine';
-import { makeExecutableSchema } from 'graphql-tools';
+import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools';
 import { importSchema } from 'graphql-import';
 import resolvers from './src/resolvers';
 import env from './env';
@@ -43,6 +43,19 @@ const schema = makeExecutableSchema({
   typeDefs,
   resolvers,
 });
+
+// Mock!!!
+// addMockFunctionsToSchema({schema});
+// const query =`
+//   query getLogin{
+//     Login(username: "nihao", password: "111"){
+//       username,
+//       password
+//     }
+//   }
+// `
+// graphql(schema, query).then((res: any) => console.log('got!', res));
+
 // router
 router.post('/graphql', graphqlKoa({ schema, tracing: true, cacheControl: true })); // graphql
 router.get('/graphiql', graphiqlKoa({ endpointURL: '/graphql' })); //graphiql

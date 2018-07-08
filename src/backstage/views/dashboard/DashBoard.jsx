@@ -7,7 +7,7 @@ class DashBoard extends React.Component {
 		return (
 			<Fragment>
 				<BackStage>
-					<MyEditor />
+					<div>ssss</div>
 				</BackStage>
 			</Fragment>
 		);
