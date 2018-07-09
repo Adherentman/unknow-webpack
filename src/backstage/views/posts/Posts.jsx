@@ -5,7 +5,7 @@ class Posts extends React.Component {
 	render() {
 		return (
 			<div>
-				<BackStage>Posts!!!</BackStage>
+				<BackStage>少时诵诗书</BackStage>
 			</div>
 		);
 	}
