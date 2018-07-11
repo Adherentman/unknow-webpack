@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Mutation } from 'react-apollo';
 import { Row, Col, Form, Input, Button, Select } from 'antd';
+import MyEditor from '../../../components/markdown';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -54,8 +55,11 @@ class _AddarticleForm extends Component {
 							</FormItem>
 						</Col>
 					</Row>
+					<FormItem>{getFieldDecorator('markdown')(<MyEditor />)}</FormItem>
 					<FormItem>
-						<Button type="primary" htmlType="submit" />
+						<Button type="primary" htmlType="submit">
+							添加
+						</Button>
 					</FormItem>
 				</Form>
 			</Fragment>

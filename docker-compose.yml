@@ -2,7 +2,7 @@ version: "3"
 
 services:
   servers:
-    build: ./
+    image: registry.cn-hangzhou.aliyuncs.com/x_zh/servers
     container_name: servers
     ports:
       - 80:80
@@ -22,7 +22,7 @@ services:
     networks:
       - xzh
     ports:
-      - 49155:27017
+      - 27017:27017
 
 networks:
   xzh:
